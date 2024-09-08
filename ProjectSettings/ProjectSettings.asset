@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: No.2
   productName: CreativeStaff
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -160,7 +160,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.No.2.CreativeStaff
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -752,7 +753,7 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 0
+  activeInputHandler: 1
   windowsGamepadBackendHint: 0
   cloudProjectId: 98af2661-0afe-4fa8-b70c-36fb7afec7fc
   framebufferDepthMemorylessMode: 0
