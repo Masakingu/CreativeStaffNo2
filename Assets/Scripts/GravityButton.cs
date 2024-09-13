@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GravityButton : MonoBehaviour
 {
     [SerializeField] GameObject Player;
-    private Rigidbody rigidbody;
+    public new Rigidbody rigidbody;
     private bool isgravity = true;
     
     // Start is called before the first frame update
@@ -23,10 +23,10 @@ public class GravityButton : MonoBehaviour
     }
     public void OnGravityButtonClick(){
         if(isgravity){
-             Physics.gravity = new Vector3(0, 9.8f, 0); 
+             Physics.gravity = new Vector3(0, 9.81f, 0); 
              isgravity = false;
         }else{
-             Physics.gravity = new Vector3(0, -9.8f, 0);
+             Physics.gravity = new Vector3(0, -9.81f, 0);
              isgravity = true;
         }
     }

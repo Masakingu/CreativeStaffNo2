@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private InputAction moveAction;
     private bool isGround;
     private Vector2 moveInput;
-    private Rigidbody rigidbody;
+    public new Rigidbody rigidbody;
     public float moveSpeed = 5f;  // 移動速度
     public float jumpForce = 130f;  // ジャンプ力
 
@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
         // アクションマップとアクションの初期化
         var playerActionMap = inputActions.FindActionMap("Player");
         rigidbody = this.GetComponent<Rigidbody>();
+        rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         moveAction = playerActionMap.FindAction("Move");
 
         // アクションを有効化
@@ -41,14 +42,26 @@ public class PlayerController : MonoBehaviour
         // 水平方向の移動
         Vector3 movement = new Vector3(moveInput.x * moveSpeed, rigidbody.velocity.y, 0);
         rigidbody.velocity = movement;
-
-        // ジャンプ処理
         if (isGround && moveInput.y > 0)
         {
+        if(Physics.gravity == new Vector3(0, -9.81f, 0)){
+        // ジャンプ処理
+        
             // 一度だけジャンプ力を適用する
             rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isGround = false;  // ジャンプ中は地面についていない
+        
         }
+        }else if(isGround && moveInput.y < 0){
+            if(Physics.gravity == new Vector3(0, 9.81f, 0)){
+        
+            // 一度だけジャンプ力を適用する
+            rigidbody.AddForce(Vector3.down * jumpForce, ForceMode.Impulse);
+            isGround = false;  // ジャンプ中は地面についていない
+        
+        }
+        }
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -59,6 +72,7 @@ public class PlayerController : MonoBehaviour
             isGround = true;  // 接地したら再びジャンプ可能に
         }
     }
+     
 
     private void OnCollisionExit(Collision collision)
     {

@@ -975,6 +975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 597517734}
+  rigidbody: {fileID: 597517740}
 --- !u!1 &597517734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,6 +1013,7 @@ MonoBehaviour:
   Camera: {fileID: 742318692}
   PlayerSpriteObject: {fileID: 953211669}
   inputActions: {fileID: -944628639613478452, guid: 3635960d9b53b9c4f89c4efe10c8f62a, type: 3}
+  rigidbody: {fileID: 0}
   moveSpeed: 5
   jumpForce: 5
 --- !u!65 &597517736
@@ -1174,7 +1176,7 @@ GameObject:
   - component: {fileID: 615440882}
   m_Layer: 0
   m_Name: Stage
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
