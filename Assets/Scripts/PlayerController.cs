@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameObject Camera;
     [SerializeField] private GameObject PlayerSpriteObject;
+    [SerializeField] private GameObject GoalPanel;
+    [SerializeField] private GameObject FailedPanel;
+
     [SerializeField] private InputActionAsset inputActions;
+    [SerializeField] private float LimitTop;
     
     private InputAction moveAction;
     private bool isGround;
@@ -23,9 +28,11 @@ public class PlayerController : MonoBehaviour
         rigidbody = this.GetComponent<Rigidbody>();
         rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         moveAction = playerActionMap.FindAction("Move");
-
+        GoalPanel.SetActive(false);
+        FailedPanel.SetActive(false);
         // アクションを有効化
         moveAction.Enable();
+        Time.timeScale = 1f;
     }
 
     void Update()
@@ -61,6 +68,11 @@ public class PlayerController : MonoBehaviour
         
         }
         }
+
+        if(this.transform.position.y < -5||this.transform.position.y > LimitTop){
+            FailedPanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
         
     }
 
@@ -71,8 +83,21 @@ public class PlayerController : MonoBehaviour
         {
             isGround = true;  // 接地したら再びジャンプ可能に
         }
+        if (collision.gameObject.tag == "Death")
+        {
+            FailedPanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        
     }
-     
+     private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "Goal")
+        {
+            GoalPanel.SetActive(true);
+            Time.timeScale = 0f;
+        }
+    }
 
     private void OnCollisionExit(Collision collision)
     {
@@ -81,5 +106,9 @@ public class PlayerController : MonoBehaviour
         {
             isGround = false;
         }
+    }
+
+    public void OnRestartButtonClick(){
+        SceneManager.LoadScene (SceneManager.GetActiveScene().name);
     }
 }
