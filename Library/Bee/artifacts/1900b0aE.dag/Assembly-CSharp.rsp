@@ -365,6 +365,7 @@
 -analyzer:"E:/2022.3.37f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/CameraMove.cs"
 "Assets/Scripts/GravityButton.cs"
+"Assets/Scripts/KeyAction.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/SceneChange.cs"
 "Assets/Scripts/StageMove.cs"
