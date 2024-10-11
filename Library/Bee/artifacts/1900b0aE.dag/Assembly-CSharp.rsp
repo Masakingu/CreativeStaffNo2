@@ -366,6 +366,7 @@
 "Assets/Scripts/CameraMove.cs"
 "Assets/Scripts/GravityButton.cs"
 "Assets/Scripts/KeyAction.cs"
+"Assets/Scripts/MoveDamageCube.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/SceneChange.cs"
 "Assets/Scripts/StageMove.cs"

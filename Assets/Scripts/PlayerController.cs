@@ -10,11 +10,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject PlayerSpriteObject;
     [SerializeField] private GameObject GoalPanel;
     [SerializeField] private GameObject FailedPanel;
+    [SerializeField] private string NextSceneName;
 
     [SerializeField] private InputActionAsset inputActions;
     [SerializeField] private float LimitTop;
-    
+
     private InputAction moveAction;
+    private InputAction gravityAction;
+    private bool isgravity = true;
+    float time = 1f;
     private bool isGround;
     private Vector2 moveInput;
     public new Rigidbody rigidbody;
@@ -26,12 +30,15 @@ public class PlayerController : MonoBehaviour
         // アクションマップとアクションの初期化
         var playerActionMap = inputActions.FindActionMap("Player");
         rigidbody = this.GetComponent<Rigidbody>();
+        Physics.gravity = new Vector3(0, -9.81f, 0);
         rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
         moveAction = playerActionMap.FindAction("Move");
+        gravityAction = playerActionMap.FindAction("Gravity");
         GoalPanel.SetActive(false);
         FailedPanel.SetActive(false);
         // アクションを有効化
         moveAction.Enable();
+        gravityAction.Enable();
         Time.timeScale = 1f;
     }
 
@@ -39,9 +46,10 @@ public class PlayerController : MonoBehaviour
     {
         // キャラクターの向きをカメラに常に向ける
         PlayerSpriteObject.transform.LookAt(Camera.transform.position);
-
+        time += Time.deltaTime;
         // 入力の取得
         moveInput = moveAction.ReadValue<Vector2>();
+
     }
 
     private void FixedUpdate()
@@ -51,29 +59,34 @@ public class PlayerController : MonoBehaviour
         rigidbody.velocity = movement;
         if (isGround && moveInput.y > 0)
         {
-        if(Physics.gravity == new Vector3(0, -9.81f, 0)){
-        // ジャンプ処理
-        
-            // 一度だけジャンプ力を適用する
-            rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGround = false;  // ジャンプ中は地面についていない
-        
+            if (Physics.gravity == new Vector3(0, -9.81f, 0))
+            {
+                // ジャンプ処理
+
+                // 一度だけジャンプ力を適用する
+                rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                isGround = false;  // ジャンプ中は地面についていない
+
+            }
         }
-        }else if(isGround && moveInput.y < 0){
-            if(Physics.gravity == new Vector3(0, 9.81f, 0)){
-        
-            // 一度だけジャンプ力を適用する
-            rigidbody.AddForce(Vector3.down * jumpForce, ForceMode.Impulse);
-            isGround = false;  // ジャンプ中は地面についていない
-        
-        }
+        else if (isGround && moveInput.y < 0)
+        {
+            if (Physics.gravity == new Vector3(0, 9.81f, 0))
+            {
+
+                // 一度だけジャンプ力を適用する
+                rigidbody.AddForce(Vector3.down * jumpForce, ForceMode.Impulse);
+                isGround = false;  // ジャンプ中は地面についていない
+
+            }
         }
 
-        if(this.transform.position.y < -5||this.transform.position.y > LimitTop){
+        if (this.transform.position.y < -5 || this.transform.position.y > LimitTop)
+        {
             FailedPanel.SetActive(true);
             Time.timeScale = 0f;
         }
-        
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -88,9 +101,9 @@ public class PlayerController : MonoBehaviour
             FailedPanel.SetActive(true);
             Time.timeScale = 0f;
         }
-        
+
     }
-     private void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Goal")
         {
@@ -108,7 +121,32 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnRestartButtonClick(){
-        SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+    public void OnRestartButtonClick()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void OnNextButtonClick()
+    {
+        SceneManager.LoadScene(NextSceneName);
+    }
+    public void OnGravity(InputAction.CallbackContext context)
+    {
+        if (time >= 1f)
+        {
+            //Debug.Log(time);
+            if (isgravity)
+            {
+                Physics.gravity = new Vector3(0, 9.81f, 0);
+                isgravity = false;
+            }
+            else
+            {
+                Physics.gravity = new Vector3(0, -9.81f, 0);
+                isgravity = true;
+            }
+            time = 0f;
+        }
     }
 }
+

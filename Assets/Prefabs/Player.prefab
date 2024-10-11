@@ -180,7 +180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2614786162516331977
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1224,7 +1224,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4045944818015897882}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: OnRestartButtonClick
+        m_MethodName: OnNextButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1829,6 +1829,7 @@ MonoBehaviour:
   PlayerSpriteObject: {fileID: 1185087738283684309}
   GoalPanel: {fileID: 4236426842047275009}
   FailedPanel: {fileID: 1529547207241349431}
+  NextSceneName: 
   inputActions: {fileID: -944628639613478452, guid: 3635960d9b53b9c4f89c4efe10c8f62a, type: 3}
   LimitTop: 11
   rigidbody: {fileID: 0}
@@ -1890,6 +1891,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2cfb481b-0767-4d0f-b72c-43b9ce770e5f
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4045944818015897882}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnGravity
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fe9a957c-1ceb-4b31-81a8-d303b5109761
+    m_ActionName: Player/Gravity[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
