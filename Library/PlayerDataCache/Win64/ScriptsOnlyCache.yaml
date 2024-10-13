@@ -2,11 +2,16 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - GravityButton
+    - KeyAction
+    - MoveDamageCube
     - PlayerController
     - SceneChange
+    - StageMove
     Cinemachine.dll:
     - Cinemachine.CinemachinePipeline
     - Cinemachine.CinemachineVirtualCamera
+    DOTween.dll:
+    - DG.Tweening.Core.DOTweenSettings
     Unity.InputSystem.dll:
     - UnityEngine.InputSystem.InputActionAsset
     - UnityEngine.InputSystem.InputActionReference
@@ -52,6 +57,9 @@ ScriptsOnlyBuild:
     - Cinemachine.CinemachineBrain/VcamActivatedEvent
     - Cinemachine.CinemachineVirtualCameraBase/TransitionParams
     - Cinemachine.LensSettings
+    DOTween:
+    - DG.Tweening.Core.DOTweenSettings/ModulesSetup
+    - DG.Tweening.Core.DOTweenSettings/SafeModeOptions
     Unity.InputSystem:
     - UnityEngine.InputSystem.InputAction
     - UnityEngine.InputSystem.InputActionMap
@@ -101,11 +109,38 @@ ScriptsOnlyBuild:
     fullTypeName: PlayerController
     methodName: OnRestartButtonClick
   - assembly: Assembly-CSharp
+    fullTypeName: PlayerController
+    methodName: OnNextButtonClick
+  - assembly: Assembly-CSharp
     fullTypeName: GravityButton
     methodName: OnGravityButtonClick
   - assembly: Assembly-CSharp
     fullTypeName: PlayerController
+    methodName: OnGravity
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerController
     methodName: OnRestartButtonClick
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerController
+    methodName: OnNextButtonClick
+  - assembly: Assembly-CSharp
+    fullTypeName: GravityButton
+    methodName: OnGravityButtonClick
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerController
+    methodName: OnGravity
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerController
+    methodName: OnRestartButtonClick
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerController
+    methodName: OnNextButtonClick
+  - assembly: Assembly-CSharp
+    fullTypeName: GravityButton
+    methodName: OnGravityButtonClick
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerController
+    methodName: OnGravity
   sceneClasses:
     Assets/Scenes/Stage1.unity:
     - Class: 1
@@ -145,35 +180,35 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1656}
-    - Class: 114
       Script: {instanceID: 1660}
     - Class: 114
-      Script: {instanceID: 2202}
+      Script: {instanceID: 1664}
     - Class: 114
-      Script: {instanceID: 2832}
+      Script: {instanceID: 2206}
     - Class: 114
-      Script: {instanceID: 2910}
+      Script: {instanceID: 2836}
     - Class: 114
-      Script: {instanceID: 2984}
+      Script: {instanceID: 2914}
     - Class: 114
-      Script: {instanceID: 3150}
+      Script: {instanceID: 2988}
     - Class: 114
-      Script: {instanceID: 3516}
+      Script: {instanceID: 3154}
     - Class: 114
-      Script: {instanceID: 4278}
+      Script: {instanceID: 3520}
     - Class: 114
-      Script: {instanceID: 6008}
+      Script: {instanceID: 4290}
     - Class: 114
-      Script: {instanceID: 6700}
+      Script: {instanceID: 6028}
     - Class: 114
-      Script: {instanceID: 6910}
+      Script: {instanceID: 6730}
     - Class: 114
-      Script: {instanceID: 7800}
+      Script: {instanceID: 6940}
     - Class: 114
-      Script: {instanceID: 8698}
+      Script: {instanceID: 7830}
     - Class: 114
-      Script: {instanceID: 8926}
+      Script: {instanceID: 8732}
+    - Class: 114
+      Script: {instanceID: 8962}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -194,6 +229,188 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 850595691
       Script: {instanceID: 0}
+    Assets/Scenes/Stage2.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1660}
+    - Class: 114
+      Script: {instanceID: 1664}
+    - Class: 114
+      Script: {instanceID: 2206}
+    - Class: 114
+      Script: {instanceID: 2836}
+    - Class: 114
+      Script: {instanceID: 2914}
+    - Class: 114
+      Script: {instanceID: 2988}
+    - Class: 114
+      Script: {instanceID: 3154}
+    - Class: 114
+      Script: {instanceID: 3520}
+    - Class: 114
+      Script: {instanceID: 4290}
+    - Class: 114
+      Script: {instanceID: 4904}
+    - Class: 114
+      Script: {instanceID: 6028}
+    - Class: 114
+      Script: {instanceID: 6212}
+    - Class: 114
+      Script: {instanceID: 6730}
+    - Class: 114
+      Script: {instanceID: 6940}
+    - Class: 114
+      Script: {instanceID: 7830}
+    - Class: 114
+      Script: {instanceID: 8732}
+    - Class: 114
+      Script: {instanceID: 8962}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 134
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/Stage3.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
+    - Class: 23
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 33
+      Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
+    - Class: 65
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 108
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1660}
+    - Class: 114
+      Script: {instanceID: 1664}
+    - Class: 114
+      Script: {instanceID: 2206}
+    - Class: 114
+      Script: {instanceID: 2836}
+    - Class: 114
+      Script: {instanceID: 2914}
+    - Class: 114
+      Script: {instanceID: 2988}
+    - Class: 114
+      Script: {instanceID: 3154}
+    - Class: 114
+      Script: {instanceID: 3520}
+    - Class: 114
+      Script: {instanceID: 4290}
+    - Class: 114
+      Script: {instanceID: 6028}
+    - Class: 114
+      Script: {instanceID: 6212}
+    - Class: 114
+      Script: {instanceID: 6730}
+    - Class: 114
+      Script: {instanceID: 6940}
+    - Class: 114
+      Script: {instanceID: 7830}
+    - Class: 114
+      Script: {instanceID: 8732}
+    - Class: 114
+      Script: {instanceID: 8962}
+    - Class: 114
+      Script: {instanceID: 27244}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
+      Script: {instanceID: 0}
+    - Class: 134
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
     Assets/Scenes/Title.unity:
     - Class: 1
       Script: {instanceID: 0}
@@ -213,6 +430,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 82
       Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
     - Class: 104
@@ -220,35 +439,37 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1656}
+      Script: {instanceID: 1660}
     - Class: 114
-      Script: {instanceID: 2394}
+      Script: {instanceID: 2398}
     - Class: 114
-      Script: {instanceID: 2910}
+      Script: {instanceID: 2914}
     - Class: 114
-      Script: {instanceID: 3150}
+      Script: {instanceID: 3154}
     - Class: 114
-      Script: {instanceID: 3516}
+      Script: {instanceID: 3520}
     - Class: 114
-      Script: {instanceID: 4278}
+      Script: {instanceID: 3946}
     - Class: 114
-      Script: {instanceID: 4646}
+      Script: {instanceID: 4290}
     - Class: 114
-      Script: {instanceID: 4778}
+      Script: {instanceID: 4662}
     - Class: 114
-      Script: {instanceID: 5096}
+      Script: {instanceID: 4796}
     - Class: 114
-      Script: {instanceID: 6008}
+      Script: {instanceID: 5116}
     - Class: 114
-      Script: {instanceID: 6700}
+      Script: {instanceID: 6028}
     - Class: 114
-      Script: {instanceID: 6910}
+      Script: {instanceID: 6730}
     - Class: 114
-      Script: {instanceID: 7130}
+      Script: {instanceID: 6940}
     - Class: 114
-      Script: {instanceID: 7800}
+      Script: {instanceID: 7160}
     - Class: 114
-      Script: {instanceID: 8698}
+      Script: {instanceID: 7830}
+    - Class: 114
+      Script: {instanceID: 8732}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -388,7 +609,7 @@ ScriptsOnlyBuild:
     className: CinemachineCollider
   - hash:
       serializedVersion: 2
-      Hash: 70f93d154b51b9be68847179579eafa2
+      Hash: 5794d004214423717f31443aafc00d38
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerController
@@ -724,6 +945,18 @@ ScriptsOnlyBuild:
     className: PlayerQuitHandler
   - hash:
       serializedVersion: 2
+      Hash: 2a4bf9bfa4fc85b7c3fd76767f844af6
+    assemblyName: DOTween.dll
+    namespaceName: DG.Tweening.Core
+    className: DOTweenComponent
+  - hash:
+      serializedVersion: 2
+      Hash: 4f1dec93fa2a0b0e7b8b47518da31b1c
+    assemblyName: DOTween.dll
+    namespaceName: DG.Tweening.Core
+    className: DOTweenSettings
+  - hash:
+      serializedVersion: 2
       Hash: d3bece132a2b48e63d78047dece48ba7
     assemblyName: Assembly-CSharp
     namespaceName: 
@@ -950,6 +1183,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: DictionaryAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 2e44dd4521e3eb5d4be9d3ed1704ea92
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: KeyAction
   - hash:
       serializedVersion: 2
       Hash: a013bd07781ea71be78aca4d84398e85
@@ -1238,6 +1477,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UIElements
     className: PanelEventHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 28ad028c24a8ac028c338ded24124c9f
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: StageMove
   - hash:
       serializedVersion: 2
       Hash: 0515d3107a65fdbab3ad88c2c94de99f
@@ -1844,8 +2089,16 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 80e8a9f905b250b1f6d345473d735097
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MoveDamageCube
   platform: 19
   scenePathNames:
   - Assets/Scenes/Title.unity
   - Assets/Scenes/Stage1.unity
-  playerPath: "C:/Users/masak/Desktop/\u8A66\u4F5C\u54C1/CreativeStaff.exe"
+  - Assets/Scenes/Stage2.unity
+  - Assets/Scenes/Stage3.unity
+  playerPath: "C:/Users/m0a240726b/Desktop/\u7D05\u83EF\u796D\u30B2\u30FC\u30E0/CreativeStaff.exe"
