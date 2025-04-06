@@ -107,6 +107,14 @@ public class PlayerController : MonoBehaviour
     {
         if (collider.gameObject.tag == "Goal")
         {
+            for (int i=0; SelectManagement.SceneName.Count > i; i++)
+            { 
+                if (SceneManager.GetActiveScene().name == SelectManagement.SceneName[i])
+                {
+                    SelectManagement.Cleared[i] = true;
+                    break;
+                }
+            }
             GoalPanel.SetActive(true);
             Time.timeScale = 0f;
         }
@@ -134,7 +142,7 @@ public class PlayerController : MonoBehaviour
     {
         if (time >= 1f)
         {
-            //Debug.Log(time);
+            
             if (isgravity)
             {
                 Physics.gravity = new Vector3(0, 9.81f, 0);
